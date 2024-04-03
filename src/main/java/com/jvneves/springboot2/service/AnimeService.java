@@ -1,6 +1,7 @@
 package com.jvneves.springboot2.service;
 
 import com.jvneves.springboot2.domain.Anime;
+import com.jvneves.springboot2.exception.BadRequestException;
 import com.jvneves.springboot2.mapper.AnimeMapper;
 import com.jvneves.springboot2.repository.AnimeRepository;
 import com.jvneves.springboot2.requests.AnimePostRequestBody;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,12 +22,16 @@ public class AnimeService {
     public List<Anime> listAll() {
         return animeRepository.findAll();
     }
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
+    }
 
     public Anime findByIdOrThrowBadRequestException(long id) {
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+                .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
+    @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
