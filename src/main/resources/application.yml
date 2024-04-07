@@ -4,7 +4,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/anime?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/anime?createDatabaseIfNotExist=true
     username: root
     password: root
 
@@ -13,8 +13,11 @@ spring:
       ddl-auto: update
     show-sql: true
 
+<<<<<<< HEAD
 logging:
   level:
     org:
       hibernate:
         SQL: DEBUG
+=======
+>>>>>>> e5d0a5f2ae7de00d98c347856723fc850d1dfccd
