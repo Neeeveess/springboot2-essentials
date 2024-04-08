@@ -13,11 +13,8 @@ spring:
       ddl-auto: update
     show-sql: true
 
-<<<<<<< HEAD
 logging:
   level:
     org:
       hibernate:
         SQL: DEBUG
-=======
->>>>>>> e5d0a5f2ae7de00d98c347856723fc850d1dfccd
